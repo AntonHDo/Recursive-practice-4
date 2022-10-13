@@ -33,12 +33,28 @@ let y = x.slice();
 console.log(x[0] === y[0]) // true
 ***********************************************************************/
 
-
+// Davids answer
 function deepDup(arr) {
   // Your code here
+  let res = []
+  arr.forEach(el => {
+    if (Array.isArray(el)) {
+      res.push(deepDup(el))
+    } else {
+      res.push(el);
+    }
+  })
+  return res;
 }
 
-
+let arr = [[1], [2, [3]]];
+console.log(duped = deepDup(arr)); // [[1], [2, [3]]]
+console.log(arr[0] === duped[0]) // false
+console.log(arr[1] === duped[1]) // false
+console.log(arr[1][1] === duped[1][1]) // false
+let x = [1, 2, 3];
+let y = x.slice();
+console.log(x[0] === y[0]) // true
 /**************DO NOT MODIFY ANYTHING UNDER THIS LINE*****************/
 try {
   module.exports = deepDup;
